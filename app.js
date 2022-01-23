@@ -1,7 +1,7 @@
 
 const ui = new UI();
 const weather=new Weather();
-document.addEventListener('DOMContentLoaded', getWeather);
+
 
 if(weather.city==undefined){
   $('#locModal').modal("show");
@@ -9,13 +9,13 @@ if(weather.city==undefined){
 addEventListener('keypress', (event) => {
   if ($('#locModal').is(':visible')  && event.code=='Enter'){
     event.preventDefault();
-    boome();
+    GetCity();
   }
 })
 
-document.getElementById('w-change-btn').addEventListener('click',boome)
+document.getElementById('w-change-btn').addEventListener('click',GetCity)
 
-function boome(){
+function GetCity(){
 
 
   const city = document.getElementById('city').value;
@@ -36,14 +36,10 @@ function getWeather(){
     .then(results => {
       if(results.cod=='404'){
         alert('Not A Real City')
-        $('#locModal').modal('show');
         return;
       }
 
       ui.paint(results);
     })
     .catch(err => console.log(err));
-}
-function boom(){
-  alert('nice');
 }
